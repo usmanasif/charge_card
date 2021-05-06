@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: charge_card_production
-  username: charge_card
+  database: <%= ENV['CHARGE_CARD_DATABASE_NAME'] %>
+  username: <%= ENV['CHARGE_CARD_DATABASE_USERNAME'] %>
   password: <%= ENV['CHARGE_CARD_DATABASE_PASSWORD'] %>

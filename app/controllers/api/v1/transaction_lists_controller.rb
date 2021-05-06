@@ -2,7 +2,7 @@ class Api::V1::TransactionListsController < Api::V1::BaseController
   before_action :set_card, only: [:index]
 
   def index
-    @transaction_lists = @card.transaction_lists
+    @transaction_lists = @card.transaction_lists || TransactionList.all
     limit = params[:limit] || 10
     offset = params[:offset] || 0
 
@@ -21,6 +21,6 @@ class Api::V1::TransactionListsController < Api::V1::BaseController
       @card = Card.find(params[:card_id])
 
     rescue
-      render json: { message: 'Please pass a valid card_id' }, status: :not_found if @card.blank?
+      render json: { message: 'Please enter a valid card_id' }, status: :not_found if params[:card_id] && @card.blank?
     end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :cards, only: [:show, :index]
       resources :transaction_lists, only: [:show, :index]
+      resources :transactions, only: [:index]
     end
   end
 end
